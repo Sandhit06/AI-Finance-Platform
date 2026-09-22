@@ -71,6 +71,48 @@ The platform focuses on:
 
 ---
 
+## Architecture
+
+                      ┌──────────────────────┐
+                      │      Clerk Auth      │
+                      │    Arcjet Security   │
+                      └──────────┬───────────┘
+                                 │
+                                 ▼
+                      ┌──────────────────────┐
+                      │     Next.js 15       │
+                      │     App Router       │
+                      │                      │
+                      │ React / Shadcn UI    │
+                      │ React Hook Form      │
+                      │ Zod Validation       │
+                      └──────────┬───────────┘
+                                 │
+             ┌───────────────────┼───────────────────┐
+             │                   │                   │
+             ▼                   ▼                   ▼
+   ┌──────────────────┐ ┌────────────────┐ ┌──────────────────┐
+   │  Server Actions  │ │ Inngest Jobs   │ │  Google Gemini   │
+   │                  │ │                │ │                  │
+   │ Accounts         │ │ Recurring Txns │ │ Receipt Scanning │
+   │ Transactions     │ │ Budget Alerts  │ │ AI Insights      │
+   │ Budgets          │ │ Monthly Report │ │                  │
+   └────────┬─────────┘ └───────┬────────┘ └──────────────────┘
+            │                   │
+            │                   └──────────────┐
+            │                                  │
+            ▼                                  ▼
+   ┌──────────────────┐               ┌─────────────────┐
+   │     Prisma       │               │     Resend      │
+   │       ORM        │               │  Email Service  │
+   └────────┬─────────┘               └─────────────────┘
+            │
+            ▼
+   ┌──────────────────┐
+   │    PostgreSQL    │
+   │     Supabase     │
+   └──────────────────┘
+
 ## Tech Stack
 
 ### Frontend
